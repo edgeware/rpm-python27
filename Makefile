@@ -19,7 +19,7 @@ BUILDDEPS = tk-devel \
 	ncurses-devel \
 	readline-devel
 
-all: $(DISTDIR)
+all: $(DISTDIR) clean
 
 $(DISTDIR): rpm
 	mkdir dist
@@ -27,11 +27,14 @@ $(DISTDIR): rpm
 
 deps:
 	sudo yum -y install rpmdevtools
-	rpmdev-setuptree
 	sudo yum -y install $(BUILDDEPS)
 
 rpm: deps $(SRC)
+	rpmdev-setuptree
 	QA_RPATHS='$[ 0x0001|0x0010 ]' rpmbuild -bb $(SPEC)
 
 $(SRC):
 	curl -L -o $@ https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz
+
+clean:
+	rpmdev-wipetree
