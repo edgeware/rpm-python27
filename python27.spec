@@ -96,7 +96,7 @@ License: PSF
 Group: Development/Languages
 Provides: python-abi = %{libvers}
 Provides: python(abi) = %{libvers}
-Source: https://www.python.org/ftp/python/%{version}/Python-%{version}.tgz
+Source0: https://www.python.org/ftp/python/%{version}/Python-%{version}.tgz
 %if %{include_docs}
 Source1: https://docs.python.org/2/archives/python-%{version}-docs-html.tar.bz2
 %endif
